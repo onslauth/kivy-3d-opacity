@@ -287,7 +287,7 @@ class OrthographicRenderer( Widget ):
 			self.scale.xyz = ( 1.0, 1.0, 1.0 )
 
 		## This shifts the line
-		if keycode[ 1 ] == "down":
+		if keycode[ 1 ] == "right":
 
 			if self.borehole_segments is None:
 				return
@@ -303,7 +303,7 @@ class OrthographicRenderer( Widget ):
 			diff = next_pos - current_pos
 			self.borehole_translate.xyz -= diff[ 1:4 ] 
 
-		elif keycode[ 1 ] == "up":
+		elif keycode[ 1 ] == "left":
 			if self.borehole_segments is None:
 				return
 
@@ -318,7 +318,7 @@ class OrthographicRenderer( Widget ):
 			diff = current_pos - next_pos
 			self.borehole_translate.xyz += diff[ 1:4 ]
 
-		elif keycode[ 1 ] == "left":
+		elif keycode[ 1 ] == "down":
 			self.alpha -= 0.1
 			if self.alpha < 0.0:
 				self.alpha = 0.0
@@ -327,7 +327,7 @@ class OrthographicRenderer( Widget ):
 				i[ "vertices" ][ :,6:7 ] = self.alpha
 				i[ "mesh" ].vertices = i[ "vertices" ].ravel( )
 
-		elif keycode[ 1 ] == "right":
+		elif keycode[ 1 ] == "up":
 			self.alpha += 0.1
 			if self.alpha > 1.0:
 				self.alpha = 1.0
