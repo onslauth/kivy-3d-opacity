@@ -1,0 +1,61 @@
+#:kivy 1.10
+
+#: import os os
+#: import hex kivy.utils.get_color_from_hex
+#: import win kivy.core.window
+#: import platform platform
+#: import Clock kivy.clock.Clock
+
+# In Kivy language, the widget added last is at the top of the window in terms of Z.
+# So to make sure that buttons receive the click event, add them last so they are not
+# overridden by the other widgets.
+
+<OrthographicScreen>:
+	entire_window: entire_window
+	nav_bar: nav_bar
+	main_area: main_area
+	right_nav_bar: right_nav_bar
+	left_area: left_area
+
+	BoxLayout:
+		id: entire_window
+		size_hint: 1, 1
+		orientation: "vertical"
+
+		ActionBar:
+			id: nav_bar
+			pos_hint: { "top": 1 }
+			ActionView:
+				use_separator: True
+				ActionPrevious:
+					title: "Scan IT"
+					with_previous: False
+				ActionButton:
+					font_size: '12sp'
+					text: "Close"
+					on_release: root.close( )
+
+		FloatLayout:
+			id: main_area
+			size_hint: 1.0, 1.0
+
+			BoxLayout:
+				id: right_nav_bar
+				size_hint_y: 1.0
+				size_hint_x: None
+				width: '350dp'
+				pos_hint: { "right": 1 }
+				orientation: "vertical"
+
+
+			BoxLayout:
+				size_hint_y: 1.0
+				size_hint_x: None
+				width: root.width - root.right_nav_bar.width
+				pos_hint: { "left": 1 }
+
+				BoxStencil:
+					id: left_area
+					size_hint_y: 1.0
+					size_hint_x: 1.0
+
