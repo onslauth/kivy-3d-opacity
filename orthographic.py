@@ -92,7 +92,7 @@ class OrthographicRenderer( Widget ):
 
 		self.structures = [ ]
 
-		self.alpha = 1.0
+		self.alpha = 0.5
 
 		points1 = [ [ 7.307719,  1.211168,  -0.48409978, 1., 0.19607843, 0.8, self.alpha, 0., 0., ],
 		 	    [ 6.733826, -0.7047252, -0.48409978, 1., 0.19607843, 0.8, self.alpha, 0., 0., ],
@@ -139,8 +139,10 @@ class OrthographicRenderer( Widget ):
 
 	def setup_gl_context(self, *args):
 		glEnable( GL_DEPTH_TEST )
+		glEnable( GL_SAMPLE_ALPHA_TO_COVERAGE )
 
 	def reset_gl_context(self, *args):
+		glDisable( GL_SAMPLE_ALPHA_TO_COVERAGE )
 		glDisable( GL_DEPTH_TEST )
 
 	def setup_scene( self ):
